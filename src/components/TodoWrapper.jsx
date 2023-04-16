@@ -3,10 +3,16 @@ import TodoForm from './TodoForm'
 import Todo from './Todo'
 import TodoFooter from './TodoFooter'
 import shortid from 'shortid'
+import Moon from '../assets/images/icon-moon.svg'
+import Sun from '../assets/images/icon-sun.svg'
+import { useTheme } from '../context/theme-context'
 
 export const TodoWrapper = () => {
   // state
   const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos")) || [])
+
+  // theme context
+  const { theme, setTheme } = useTheme()
 
   // add todo function
   const addTodo = (todoInput) => {
@@ -45,7 +51,22 @@ export const TodoWrapper = () => {
 
       {/* header */}
       <header className="todo__header">
-        <h1 className="todo__title">TODO</h1>
+        <div>
+          <h1 className="todo__title">TODO</h1>
+          {
+            theme === "dark" ? (
+              <button onClick={() => setTheme("light")}>
+                <img src={Sun} alt="toggle" />
+              </button>
+            ) :
+              (
+                <button onClick={() => setTheme("dark")}>
+                  <img src={Moon} alt="toggle" />
+                </button>
+              )
+          }
+
+        </div>
         <TodoForm addTodo={addTodo} />
       </header>
 

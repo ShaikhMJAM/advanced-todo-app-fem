@@ -5,11 +5,19 @@
   --bright-blue: hsl(220, 98%, 61%);
   --gradient: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 
-  --bg-primary: hsl(235, 21%, 11%);
-  --bg-secondary: hsl(235, 24%, 19%);
-  --text-primary: hsl(234, 39%, 85%);
-  --text-secondary: hsl(234, 11%, 52%);
-  --text-hover: hsl(236, 33%, 92%);
+  /* dark theme */
+  --bg-primary-dark: hsl(235, 21%, 11%);
+  --bg-secondary-dark: hsl(235, 24%, 19%);
+  --text-primary-dark: hsl(234, 39%, 85%);
+  --text-secondary-dark: hsl(234, 11%, 52%);
+  --text-hover-dark: hsl(236, 33%, 92%);
+
+  /* light theme */
+  --bg-primary-light: hsl(236, 33%, 92%);
+  --bg-secondary-light: hsl(0, 0%, 98%);
+  --text-primary-light: hhsl(235, 21%, 11%);
+  --text-secondary-light: hsl(234, 11%, 52%);
+  --text-hover-light: hsl(236, 33%, 92%);
 
   --font-family: 'Josefin Sans', sans-serif;
   --font-size-desktop: 18px;
@@ -32,14 +40,33 @@ html {
 /* body */
 body {
   min-height: 100dvh;
-  background-color: var(--bg-primary);
   font-family: var(--font-family);
-  color: var(--text-primary);
+}
+
+/* main app */
+.app[data-theme="dark"] {
+  --bg-primary: var(--bg-primary-dark);
+  --bg-secondary: var(--bg-secondary-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --text-hover: var(--text-hover-dark);
+  --border: #323347;
+}
+
+.app[data-theme="light"] {
+  --bg-primary: var(--bg-primary-light);
+  --bg-secondary: var(--bg-secondary-light);
+  --text-primary: var(--text-primary-light);
+  --text-secondary: var(--text-secondary-light);
+  --text-hover: var(var(--text-hover-light));
+  --border: #ddd;
 }
 
 .app {
   min-height: 100dvh;
   position: relative;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 picture {
@@ -70,12 +97,18 @@ button {
   z-index: 1;
 }
 
+.todo__header>div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .todo__title {
   padding: 2rem 0;
   letter-spacing: 10px;
   font-size: 2.5rem;
   font-weight: 500;
-  color: var(--text-hover);
+  color: var(--text-hover-dark);
 }
 
 /* input form */
@@ -104,7 +137,7 @@ form {
   outline: 0;
   cursor: pointer;
   padding: 0 1rem;
-  color: var(--text-hover);
+  color: var(--text-hover-dark);
   font-size: 1.25rem;
 }
 
@@ -122,7 +155,7 @@ form {
 .todo {
   position: relative;
   padding: 1.15rem;
-  border-bottom: 1px solid #323347;
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -141,7 +174,7 @@ form {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  border: 1px solid #505272;
+  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;

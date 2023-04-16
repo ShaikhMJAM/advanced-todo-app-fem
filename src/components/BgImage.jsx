@@ -1,13 +1,29 @@
 import React from 'react'
-import BgDesktop from "../assets/images/bg-desktop-dark.jpg"
-import BgMobile from "../assets/images/bg-mobile-dark.jpg"
+import BgDesktopDark from "../assets/images/bg-desktop-dark.jpg"
+import BgMobileDark from "../assets/images/bg-mobile-dark.jpg"
+import BgDesktopLight from "../assets/images/bg-desktop-light.jpg"
+import BgMobileLight from "../assets/images/bg-mobile-light.jpg"
+import { useTheme } from '../context/theme-context'
 
 const BgImage = () => {
+  const { theme } = useTheme();
   return (
-    <picture>
-      <source srcSet={BgDesktop} media="(min-width: 600px)" />
-      <img src={BgMobile} alt="background" />
-    </picture>
+    <>
+      {
+        theme === "dark" ? (
+          <picture>
+            <source srcSet={BgDesktopDark} media="(min-width: 600px)" />
+            <img src={BgMobileDark} alt="background" />
+          </picture>
+        ) :
+          (
+            <picture>
+              <source srcSet={BgDesktopLight} media="(min-width: 600px)" />
+              <img src={BgMobileLight} alt="background" />
+            </picture>
+          )
+      }
+    </>
   )
 }
 
