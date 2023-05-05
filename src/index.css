@@ -191,6 +191,12 @@ label {
 
 .delete__btn {
   margin-left: auto;
+  opacity: 0;
+  transition: .25s ease;
+}
+
+.todo:hover .delete__btn {
+  opacity: 1;
 }
 
 .checkbox:checked~label {
