@@ -1,0 +1,34 @@
+name: TO-DO APP
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+  GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+  GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+
+# permissions:
+#   contents: read
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js and Build
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+      - run: yarn install
+
+      - run: yarn run build
+
+      - name: Displaying Build is Success
+        run: echo "Build is successful!"
