@@ -16,7 +16,7 @@ env:
 
 jobs:
   build:
-    runs-on: todo-list
+    runs-on: ubuntu
 
     steps:
       - name: Checkout Repository
